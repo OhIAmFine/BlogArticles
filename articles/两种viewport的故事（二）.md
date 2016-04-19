@@ -35,7 +35,7 @@ George Cummins在Stack Overflow上是这样解释这两个概念的：
 
 visual viewport只在屏幕上显示了网页的部分内容。用户通常使用滚动条或者缩放来查看其它部分的内容。  
 
-![mobile_visualviewport.jpg](./figures/20160419/mobile_visualviewport.jpg)  
+![mobile_visualviewport.jpg](./../figures/20160419/mobile_visualviewport.jpg)  
 
 但是，在CSS布局中，特别是百分比宽度，是根据layout viewport计算的。而layout viewport的大小明显比visual viewport更大。  
 
@@ -56,42 +56,42 @@ html元素是以layout viewport的大小进行初始化的，所以当CSS样式�
 
 关键在于：此时的浏览器已经将页面完全显示在移动端屏幕上，与visual viewport相等。  
 
-![mobile_viewportzoomedout.jpg](./figures/20160419/mobile_viewportzoomedout.jpg)  
+![mobile_viewportzoomedout.jpg](./../figures/20160419/mobile_viewportzoomedout.jpg)  
 
 layout viewport的宽度和高度始终与缩放至最小时的页面是成比例的，不会改变，在用户放大界面时也是如此。  
 
-![mobile_layoutviewport.jpg](./figures/20160419/mobile_layoutviewport.jpg)  
+![mobile_layoutviewport.jpg](./../figures/20160419/mobile_layoutviewport.jpg)  
 
 layout viewport的宽度始终保持一致，如果你旋转你的屏幕，visual viewport会改变，浏览器会根据新的宽度尺寸来相应的缩放页面。  
 
-![mobile_viewportzoomedout_la.jpg](./figures/20160419/mobile_viewportzoomedout_la.jpg)  
+![mobile_viewportzoomedout_la.jpg](./../figures/20160419/mobile_viewportzoomedout_la.jpg)  
 
 手机的水平放置会对layout viewport的高度有一些影响，可以看见高度明显小于垂直时候的状态。但是web开发者并不关心高度，他们只关心宽度而已。  
 
-![mobile_layoutviewport_la.jpg](./figures/20160419/mobile_layoutviewport_la.jpg)  
+![mobile_layoutviewport_la.jpg](./../figures/20160419/mobile_layoutviewport_la.jpg)  
 
 ### 测量layout viewport
 现在我们有两个viewport需要测量，所以应该庆幸的是在浏览器战争中留下的两对属性。  
 
 `document.documentElement.clientWidth`和`-Height`测量layout viewport的尺寸。  
 
-![mobile_client.jpg](./figures/20160419/mobile_client.jpg)  
+![mobile_client.jpg](./../figures/20160419/mobile_client.jpg)  
 
 手机水平放置时会影响高度，但不影响宽度。  
 
-![mobile_client_la.jpg](./figures/20160419/mobile_client_la.jpg)  
+![mobile_client_la.jpg](./../figures/20160419/mobile_client_la.jpg)  
 
 ### 测量visual viewport
 对于visual viewport，可以采用`window.innerWidth/Height`获取。很明显，当用户缩放页面时，对应的测量值会改变，因为更多或者更少的CSS像素点被包括在屏幕里了。  
 
-![mobile_inner.jpg](./figures/20160419/mobile_inner.jpg)  
+![mobile_inner.jpg](./../figures/20160419/mobile_inner.jpg)  
 
 不幸的是这对属性存在兼容性问题，一些浏览器仍然需要进一步更新才能测量visual viewport的尺寸。同样，现在也没有任何一款浏览器提供新的属性可以测量visual viewport的尺寸，所以我推测`window.innerWidth/Height`是一个标准，但是浏览器支持的并不好。  
 
 ### 屏幕（The screen）
 在PC端，`screen.width/height`给出了在设备像素层面屏幕的尺寸。在PC端，对于web开发者来说，这对值并没有什么用处。你并不关心屏幕的物理尺寸是多少，你只关心有多少CSS像素点包含在屏幕中。  
 
-![mobile_screen.jpg](./figures/20160419/mobile_screen.jpg)  
+![mobile_screen.jpg](./../figures/20160419/mobile_screen.jpg)  
 
 **缩放比例**  
 我们不能直接读出页面的缩放比例，但是可以通过`window.innerWidth`除以`screen.width`得到。当然前提是这两个属性都被浏览器所支持。  
@@ -101,19 +101,19 @@ layout viewport的宽度始终保持一致，如果你旋转你的屏幕，visua
 ### 滚动偏差值（Scroll offset）
 你同样需要知道的是visual viewport相对于layout viewport的偏移值是多少。我们称之为滚动偏移值，在PC端中，我们可以通过`window.pageX/YOffset`来获取。  
 
-![mobile_page.jpg](./figures/20160419/mobile_page.jpg)  
+![mobile_page.jpg](./../figures/20160419/mobile_page.jpg)  
 
 ### html元素
 和PC端一样，`document.documentElement.offsetWidth/Height`给出了整个html文档的大小尺寸（CSS像素层面）。  
 
-![mobile_offset.jpg](./figures/20160419/mobile_offset.jpg)  
+![mobile_offset.jpg](./../figures/20160419/mobile_offset.jpg)  
 
 ### 媒体查询（media queries）
 在移动端，媒体查询工作原理与PC端一样。`width/height`利用layout viewport作为参考对象，并计算相应的CSS像素值，`device-width/height`利用设备像素作为参考，并计算相应的设备像素值。  
 
 换句话说，`width/height`是`document.documentElement.clientWidth/Height`的一个镜像；`device-width/height`是`screen.width/height`的一个镜像。（在所有的浏览器中都表现如此，即使测量值不正确的情况下也是）  
 
-![mobile_mediaqueries.jpg](./figures/20160419/mobile_mediaqueries.jpg)  
+![mobile_mediaqueries.jpg](./../figures/20160419/mobile_mediaqueries.jpg)  
 
 现在来看，哪一种测量值对于web开发者更有用呢？关键是我也不知道。  
 
@@ -128,13 +128,13 @@ layout viewport的宽度始终保持一致，如果你旋转你的屏幕，visua
 
 `pageX/Y`同样是相对于CSS像素，和PC端上一样，它也是在三对属性中最有用的一对。  
 
-![mobile_pageXY.jpg](./figures/20160419/mobile_pageXY.jpg)  
+![mobile_pageXY.jpg](./../figures/20160419/mobile_pageXY.jpg)  
 
 `clientX/Y`是在CSS像素层面，相对于visual viewport的坐标值。这很容易理解，虽然我还没完全确定它的好处是什么。  
 
 `screenX/Y`是在设备像素层面，相对于屏幕的坐标值。当然，它的参考物同`clientX/Y`相同，不过设备像素的值没有什么作用。所以同PC端上一样，我们不用太关注`screenX/Y`。
 
-![mobile_clientXY.jpg](./figures/20160419/mobile_clientXY.jpg)  
+![mobile_clientXY.jpg](./../figures/20160419/mobile_clientXY.jpg)  
 
 ### meta viewport
 最后，我们讨论一下
@@ -147,17 +147,17 @@ layout viewport的宽度始终保持一致，如果你旋转你的屏幕，visua
 
 假如你编写了一个页面，但是并没有设置width。当它们呈现在浏览器中时，会根据layout viewport的值进行100%的拉伸。大多数移动端的浏览器会缩小页面以便能够将layout viewport完全显示在屏幕中。比如下图：  
 
-![mq_none.jpg](./figures/20160419/mq_none.jpg)  
+![mq_none.jpg](./../figures/20160419/mq_none.jpg)  
 
 所有的用户都会立即放大页面。但是放大页面后，浏览器还是会完整的保持元素的宽度，这使得阅读有时候会的困难，如图：  
 
-![mq_none_zoomed .jpg](./figures/20160419/mq_none_zoomed.jpg)  
+![mq_none_zoomed .jpg](./../figures/20160419/mq_none_zoomed.jpg)  
 
 （这里有一个特例是Android webkit，它会减小文本元素的尺寸以至于适合屏幕阅读。这种方式很巧妙，我觉得所有的浏览器都应该采取这种策略）  
 
 现在你在html中设置了`html {width: 320px}`。html元素将会缩小，其他的元素相应的也会缩小，整个html文档的宽度是320px。但是只有当用户放大时这个设置才起作用，并不是在初始化的阶段。如果用户以缩小的方式操作，那么这个设置可能就起不了什么作用了。  
 
-![mq_html300.jpg](./figures/20160419/mq_html300.jpg)  
+![mq_html300.jpg](./../figures/20160419/mq_html300.jpg)  
 
 为了解决这个问题，apple公司就在html中添加了一个meta标签  
 
@@ -167,7 +167,7 @@ layout viewport的宽度始终保持一致，如果你旋转你的屏幕，visua
 
 你可以设置页面初始化的的layout viewport的宽度。现在初始化的宽度问题已经解决了，如图：  
 
-![mq_yes.jpg](./figures/20160419/mq_yes.jpg)  
+![mq_yes.jpg](./../figures/20160419/mq_yes.jpg)  
 
 对于layout viewport的尺寸，你可以设置任何值，包括设备的屏幕宽度（device-width）。在这里`screen.width`（设备像素层面）作为参考对象来重设layout viewport的宽度。  
 
